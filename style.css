@@ -1,0 +1,273 @@
+:root {
+  /* font family */
+  --ff-barlow: "Barlow Semi Condensed", sans-serif;
+
+  
+  /* color  */
+  --clr-white:  0 0% 100%;
+  --clr-light-gray:  0 0% 81%;
+  --clr-light-grayish-blue:  210 46% 95%;
+  --clr-dark-grayish-blue:  217 19% 35%;
+  --clr-dark-blackish-blue:  219 29% 14%;
+  --clr-moderate-violet:  263 55% 52%;
+
+  /* font weight */
+  --fw-400: 500;
+  --fw-700: 600;
+
+  /* font size */
+  --fs-300: 0.6875rem;
+  --fs-400: 0.8125rem;
+  --fs-500: 1.25rem;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+
+  font-family: var(--ff-barlow);
+  font-weight: var(--fw-400);
+
+  background-color: hsl(var(--clr-light-grayish-blue));
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
+/* utilities */
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.flow > * + *{
+  margin-top: var(--flow-spacer, 1em);
+} 
+
+/* background color */
+.bg-white {
+  background: hsl(var(--clr-white));
+}
+.bg-moderate-violet {
+  background: hsl(var(--clr-moderate-violet));
+}
+.bg-dark-g-blue {
+  background: hsl(var(--clr-dark-grayish-blue));
+}
+.bg-dark-b-blue {
+  background: hsl(var(--clr-dark-blackish-blue));
+}
+
+
+/* text color */
+
+.text-white{
+  color: hsl(var(--clr-white));
+}
+.text-dark-g-blue {
+  color: hsl(var(--clr-dark-grayish-blue));
+}
+
+/* border */
+.border-moderate-violet {
+  border: 2px solid hsl(var(--clr-moderate-violet));
+}
+
+
+.testimonial {
+  font-size: var(--fs-400);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 2.5rem 3.75rem 3rem -3rem hsl(var(--clr-dark-grayish-blue) / 0.25);
+}
+
+.testimonial.quote {
+  background-image: url("./images/bg-pattern-quotation.svg");
+  background-repeat: no-repeat;
+  background-position: top right 10%;
+}
+
+.testimonial img {
+  width: 1.75rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.testimonial .name {
+  font-size: var(--fs-400);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.testimonial .position {
+  font-size: var(--fs-300);
+  opacity: 0.5;
+}
+
+.testimonial > p:first-of-type {
+  font-size: var(--fs-500);
+  line-height: 1.2;
+}
+
+.testimonial > p:last-of-type {
+  opacity: 0.7;
+}
+
+
+/* layout */
+.testimonial-grid {
+  padding-block: 2rem;
+  width: min(90%, 75rem);
+  margin-inline: auto;
+} 
+
+
+.testimonial-grid{
+  display: grid;
+  gap: 1.5rem;
+  grid-auto-columns: 1fr;
+  grid-template-areas:
+    'one'
+    'two'
+    'three'
+    'four'
+    'five'; 
+}
+
+
+.testimonial:nth-child(1) {
+  grid-area: one;
+}
+.testimonial:nth-child(2) {
+  grid-area: two;
+}
+.testimonial:nth-child(3) {
+  grid-area: three;
+}
+.testimonial:nth-child(4) {
+  grid-area: four;
+}
+.testimonial:nth-child(5) {
+  grid-area: five;
+}
+
+
+
+@media screen and (min-width: 33em) {
+  .testimonial-grid {
+      grid-template-areas:
+      "one one"
+      "two three"
+      "five five"
+      "four four";
+  }
+}
+
+@media screen and (min-width: 38em) {
+  .testimonial-grid {
+    grid-template-areas:
+      'one one'
+      'two five'
+      'three five'
+      'four four';
+  }
+}
+
+@media screen and (min-width: 54em) {
+  .testimonial-grid {
+      grid-template-areas:
+      "one one two"
+      "five five five"
+      "three four four";
+  }
+}
+
+@media screen and (min-width: 75em) {
+  .testimonial-grid {
+      grid-template-areas:
+      "one one two five"
+      "three four four five";
+  }
+}
+
+
+
